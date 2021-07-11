@@ -45,10 +45,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
 
-      body: Visibility(
-        visible: tiles != null,
-        /* -------------------------------------------------------------------------- */
-        child: ListView(
+      body: Container(
+        alignment: Alignment.center,
+        child: tiles != null? ListView(
           children: tiles.map((e) {
             return ListTile(
                 title: Text(e["title_display"]),
@@ -63,22 +62,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 });
           }).toList(),
-        ),
-        /* -------------------------------------------------------------------------- */
-        replacement: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                "Searching for News...",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 15),
-              CircularProgressIndicator(
-                backgroundColor: Colors.black,
-              ),
-            ],
-          ),
+        ) : Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "Searching for News...",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 15),
+            CircularProgressIndicator(
+              backgroundColor: Colors.black,
+            ),
+          ],
         ),
       ),
     );
