@@ -49,18 +49,30 @@ class _HomeScreenState extends State<HomeScreen> {
         alignment: Alignment.center,
         child: tiles != null? ListView(
           children: tiles.map((e) {
-            return ListTile(
-                title: Text(e["title_display"]),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => SecondScreen(
-                        title: e["title_display"],
-                        infos: e["abstract"][0],
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                  title: Text(e["title_display"],style: TextStyle(color: Colors.white),),
+                  tileColor: Colors.grey.shade900,
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => SecondScreen(
+                          title: e["title_display"],
+                          infos: e["abstract"][0],
+                        ),
                       ),
-                    ),
-                  );
-                });
+                    );
+                  },
+                  // Column == WorkAround == Gambiarra
+                  trailing: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.arrow_forward_ios, color: Colors.white,),
+                    ],
+                  ),
+                  ),
+            );
           }).toList(),
         ) : Column(
           mainAxisSize: MainAxisSize.min,
